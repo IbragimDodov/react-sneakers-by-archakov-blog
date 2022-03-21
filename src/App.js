@@ -1,8 +1,13 @@
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 
-
+const arr = [
+  {title: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999, imageUrl: '/img/sneakers/1.jpg'},
+  {title: 'Мужские Кроссовки Nike Air Max 270', price: 8499, imageUrl: '/img/sneakers/2.jpg'},
+  {title: 'Мужские Кроссовки Nike Kyrie 7', price: 7999, imageUrl: '/img/sneakers/3.jpg'},
+  {title: 'Мужские Кроссовки Nike LeBron XVIII', price: 15600, imageUrl: '/img/sneakers/4.jpg'}
+];
 
 function App() {
   return (
@@ -18,7 +23,9 @@ function App() {
           </div>
         </div>
         <div className="cards">
-          <Cart/>
+          {arr.map((obj) => (
+            <Cart title={obj.title} price={obj.price} imageUrl={obj.imageUrl} />
+          ))}
         </div>
       </div>
     </div>
