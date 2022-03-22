@@ -37,21 +37,25 @@ header {
   align-items: center;
   padding: 40px;
   border-bottom: 1px solid #eaeaea;
-    .headerLeft {
-      display: flex;
-      align-items: center;
-      h3 {
-        text-transform: uppercase;
-      }
-      p {
-        opacity: 0.5;
-      }
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    h3 {
+      text-transform: uppercase;
     }
-    .headerRight {
-      display: flex;
+    p {
+      opacity: 0.5;
     }
+  }
+  .headerRight {
+    display: flex;
+    cursor: pointer;
+  }
   li {
     margin-right: 30px;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
@@ -70,6 +74,7 @@ header {
 
 .cards {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .button {

@@ -1,23 +1,32 @@
 import React from "react";
+import { useState } from "react";
 
 import styles from './Cart.module.scss';
 
-function Cart(props) {
+function Cart({onFavorite, imageUrl, title, price, onPlus}) {
+  const [isAdded, setIsAdded] = useState(false);
+
+  const onClickPlus = () => {
+    onPlus({imageUrl, title, price});
+    setIsAdded(!isAdded);
+  };
+
   return (
     <div className={styles.card}>
-      <div className={styles.favorite}>
+      <div onClick={onFavorite} className={styles.favorite}>
         <img src="/img/heart-unliked.svg" alt="unliked-icon" />
       </div>
-      <img width={133} height={112} src={props.imageUrl} alt="sneakers-photo" />
-      <h5>{props.title}</h5>
+      <img width={133} height={112} src={imageUrl} alt="sneakers-photo" />
+      <h5>{title}</h5>
       <div className={styles.cardBottom}>
         <div cardBottom__inner>
           <span>Цена:</span>
-          <b>{props.price} руб.</b>
+          <b>{price} руб.</b>
         </div>
-        <button className="button">
-          <img width={11} height={11} src="/img/plus.svg" alt="plus-logo" />
-        </button>
+        <img
+          onClick={onClickPlus}
+          src={isAdded ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
+          alt="plus-logo" />
       </div>
     </div>
   );
