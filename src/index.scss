@@ -72,6 +72,21 @@ header {
   }
 }
 
+.search-block {
+  display: flex;
+  align-items: center;
+  position: relative;
+  input {
+    outline: none;
+  }
+  img:first-child {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -180,6 +195,21 @@ header {
     }
   }
 }
+
+.cartEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h2 {
+    margin: 10px;
+  }
+  P {
+    text-align: center;
+    opacity: 0.6;
+  }
+}
+
 .cartTotalBlock-wrapper {
   .cartTotalBlock {
     margin-bottom: 40px;

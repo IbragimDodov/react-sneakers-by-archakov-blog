@@ -3,23 +3,29 @@ import { useState } from "react";
 
 import styles from './Cart.module.scss';
 
-function Cart({onFavorite, imageUrl, title, price, onPlus}) {
+function Cart({id, onFavorite, imageUrl, title, price, onPlus, favorited = false}) {
   const [isAdded, setIsAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(favorited);
 
   const onClickPlus = () => {
     onPlus({imageUrl, title, price});
     setIsAdded(!isAdded);
   };
 
+  const onClickFavorite = () => {
+    onFavorite({id, imageUrl, title, price})
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <div className={styles.card}>
-      <div onClick={onFavorite} className={styles.favorite}>
-        <img src="/img/heart-unliked.svg" alt="unliked-icon" />
+      <div onClick={onClickFavorite} className={styles.favorite}>
+        <img src={isFavorite ? '/img/heart-liked.svg' : "/img/heart-unliked.svg"} alt="unliked-icon" />
       </div>
       <img width={133} height={112} src={imageUrl} alt="sneakers-photo" />
       <h5>{title}</h5>
       <div className={styles.cardBottom}>
-        <div cardBottom__inner>
+        <div className="cardBottom__inner" >
           <span>Цена:</span>
           <b>{price} руб.</b>
         </div>
