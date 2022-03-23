@@ -64,7 +64,7 @@ function App() {
         setFavorites((prev) => [...prev, data]);
       }
     } catch (error) {
-      alert('Не удалось добавить в фавориты')ж
+      alert('Не удалось добавить в фавориты');
     }
   };
 
