@@ -1,7 +1,29 @@
 import React from "react";
 import Cart from "../components/Cart/Cart";
 
-function Home({ items, searchValue, setSearchValue, onChangeSearchInput, onAddToFavorite, onAddToCart }) {
+function Home({
+  items,
+  searchValue,
+  setSearchValue,
+  onChangeSearchInput,
+  onAddToFavorite,
+  onAddToCart,
+  isLoading
+}) {
+
+  const renderItems = () => {
+    const filteredItems = items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()));
+    return (isLoading ? [...Array(9)] : filteredItems).map((item, index) => (
+      <Cart
+        key={index}
+        onFavorite={(obj) => onAddToFavorite(obj)}
+        onPlus={(obj) => onAddToCart(obj)}
+        loading={isLoading}
+        {...item}
+      />
+    ));
+  };
+
   return (
     <div className="content">
       <div className="content__inner">
@@ -19,16 +41,7 @@ function Home({ items, searchValue, setSearchValue, onChangeSearchInput, onAddTo
         </div>
       </div>
       <div className="cards">
-        {items
-          .filter((item) => item.title.toLowerCase().includes(searchValue))
-          .map((item, index) => (
-            <Cart
-              key={index}
-              onFavorite={(obj) => onAddToFavorite(obj)}
-              onPlus={(obj) => onAddToCart(obj)}
-              {...item}
-          />
-        ))}
+        {renderItems()}
       </div>
     </div>
   );
