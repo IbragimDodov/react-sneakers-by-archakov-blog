@@ -1,15 +1,20 @@
 import React from "react";
-import AppContext from "../context";
-import Info from "./Info";
 import axios from "axios";
+
+import Info from "../Info";
+import { useCart } from "../../hooks/useCart";
+
+import styles from './Drawer.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer({onClose, items = [], onRemove}) {
-  const {cartItems, setCartItems} = React.useContext(AppContext);
+function Drawer({onClose, items = [], onRemove, opened}) {
+  const { cartItems, setCartItems, totalPrice } = useCart();
   const [orderId, setOrderId] = React.useState(null);
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+
+  
 
   const onClickOrder = async () => {
     try {
@@ -35,8 +40,8 @@ function Drawer({onClose, items = [], onRemove}) {
   };
 
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div className={styles.drawer}>
         <h2>Корзина
           <img onClick={onClose} className="removeBtn" src="/img/btn-remove.svg" alt="remove-icon" />
         </h2>
@@ -45,17 +50,17 @@ function Drawer({onClose, items = [], onRemove}) {
           items.length > 0
             ? 
               (<div>
-                <div className="items">
+                <div className={styles.items}>
                   {items.map((obj) => (
-                    <div key={obj.id} className="cartItem">
-                      <div style={{backgroundImage: `url(${obj.imageUrl})`}} className="cartItemImg"></div>
-                      <div className="cartItem__block">
+                    <div key={obj.id} className={styles.cartItem}>
+                      <div style={{backgroundImage: `url(${obj.imageUrl})`}} className={styles.cartItemImg}></div>
+                      <div className={styles.cartItem__block}>
                         <p>{obj.title}</p>
                         <b>{obj.price} руб.</b>
                       </div>
                       <img
                         onClick={() => onRemove(obj.id)}
-                        className="removeBtn"
+                        className={styles.removeBtn}
                         src="/img/btn-remove.svg"
                         alt="remove-icon" />
                     </div>
@@ -66,12 +71,12 @@ function Drawer({onClose, items = [], onRemove}) {
                     <li>
                       <span>Итого:</span>
                       <div></div>
-                      <b>21 498 руб.</b>
+                      <b>{totalPrice} руб.</b>
                     </li>
                     <li>
                       <span>Налог 5%:</span>
                       <div></div>
-                      <b>1074 руб.</b>
+                      <b>{totalPrice / 100 * 5} руб.</b>
                     </li>
                   </ul>
                   <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
