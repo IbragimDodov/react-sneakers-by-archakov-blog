@@ -22,12 +22,12 @@ function Drawer({onClose, items = [], onRemove, opened}) {
       const {data} = await axios.post('https://623950fa63fdd477ac10ecb2.mockapi.io/orders', {
         items: cartItems,
       });
-      // await axios.put('https://623950fa63fdd477ac10ecb2.mockapi.io/cart', []);
+
       setOrderId(data.id);
       setIsOrderComplete(true);
       setCartItems([]);
 
-      for (let i = 0; i < Array.length; i++) {
+      for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
         await axios.delete('https://623950fa63fdd477ac10ecb2.mockapi.io/cart/' + item.id);
         await delay(1000);
@@ -51,8 +51,8 @@ function Drawer({onClose, items = [], onRemove, opened}) {
             ? 
               (<div>
                 <div className={styles.items}>
-                  {items.map((obj) => (
-                    <div key={obj.id} className={styles.cartItem}>
+                  {items.map((obj, index) => (
+                    <div key={obj.id + index} className={styles.cartItem}>
                       <div style={{backgroundImage: `url(${obj.imageUrl})`}} className={styles.cartItemImg}></div>
                       <div className={styles.cartItem__block}>
                         <p>{obj.title}</p>
