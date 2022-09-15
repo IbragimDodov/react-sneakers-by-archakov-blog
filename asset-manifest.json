@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-sneakers-by-archakov-blog/static/css/main.9faab12b.css",
+    "main.js": "/react-sneakers-by-archakov-blog/static/js/main.60d501ce.js",
+    "index.html": "/react-sneakers-by-archakov-blog/index.html",
+    "main.9faab12b.css.map": "/react-sneakers-by-archakov-blog/static/css/main.9faab12b.css.map",
+    "main.60d501ce.js.map": "/react-sneakers-by-archakov-blog/static/js/main.60d501ce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9faab12b.css",
+    "static/js/main.60d501ce.js"
+  ]
+}
