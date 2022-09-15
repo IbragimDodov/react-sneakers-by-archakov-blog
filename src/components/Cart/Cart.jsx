@@ -60,7 +60,6 @@ function Cart({
                 {onPlus && (<img
                   onClick={onClickPlus}
                   src={isItemAdded(id) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
-                  // src="/img/btn-plus.svg"
                   alt="plus-logo" />)}
               </div>
             </>
