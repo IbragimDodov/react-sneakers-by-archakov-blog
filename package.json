@@ -1,7 +1,7 @@
 {
   "name": "react-sneakers-by-archakov-blog",
   "version": "0.1.0",
-  "homepage": "https://ibragimdodov.github.io/react-sneakers-by-archakov-blog",
+  "homepage": "https://ibragimdodov.github.io/react-sneakers-by-archakov-blog/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
